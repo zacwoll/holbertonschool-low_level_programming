@@ -1,2 +1,2 @@
 #!/bin/bash
-gcc $CFIRE -o c
+gcc $CFILE -o c

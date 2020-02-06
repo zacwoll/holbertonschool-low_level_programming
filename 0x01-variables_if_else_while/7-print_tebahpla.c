@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 /**
   * main - Entry Point
   * Description: Prints the alphabet in lowercase, followed by a new line
@@ -6,12 +7,12 @@
   */
 int main(void)
 {
-	int a = 0;
+	int a;
+	char c;
 
-	for (a; a < 26; a++)
+	for (a = 0; a < 26; a++)
 	{
-		char c = 122 - a;
-
+		c = 122 - a;
 		putchar(c);
 	}
 	putchar('\n');

@@ -7,12 +7,12 @@
   */
 int main(void)
 {
-	int a = 0;
+	int a;
 
-	for (a; a < 10; a++)
+	for (a = 0; a < 10; a++)
 	{
 		putchar(a + 48);
-		// 48 is the ascii code for 0
+		/* 48 is the ascii code for 0 */
 	}
 	putchar('\n');
 	return (0);

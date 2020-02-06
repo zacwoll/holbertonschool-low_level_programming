@@ -20,8 +20,9 @@ int main(void)
 		if (last > 5)
 			puts(" and is greater than 5");
 		else
-			puts(" and is less than 6 nd not 0");
-	} else
+			puts(" and is less than 6 and not 0");
+	} 
+	else
 		puts(" and is 0");
 	return (0);
 }

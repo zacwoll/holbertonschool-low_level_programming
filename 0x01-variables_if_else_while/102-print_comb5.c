@@ -9,33 +9,33 @@ int main(void)
 {
 	int a;
 	int b;
-	int c;
-	int d;
+	int a_one;
+	int b_one;
+	int a_ten;
+	int b_ten;
 	int zero;
 
 	zero = 48; /* 48 is the ascii for 0 */
 
-	for (a = 0; a < 10; a++)
+	for (a = 0; a < 100; a++)
 	{
-		for (b = 0; b < 10; b++)
+		for (b = 0; b < 100; b++)
 		{
-			for (c = 0; c < 10; c++)
+			if (b > a)
 			{
-				for (d = 0; d < 10; d++)
+				a_one = a % 10;
+				b_one = b % 10;
+				a_ten = a / 10;
+				b_ten = b / 10;
+				putchar(zero + a_ten);
+				putchar(zero + a_one);
+				putchar(' ');
+				putchar(zero + b_ten);
+				putchar(zero + b_one);
+				if (a != 98 || b != 99)
 				{
-					if (c >= a && d > b)
-					{
-						putchar(zero + a);
-						putchar(zero + b);
-						putchar(' ');
-						putchar(zero + c);
-						putchar(zero + d);
-						if (a != 9 || b != 9 || c != 9 || d != 9)
-						{
-							putchar(',');
-							putchar(' ');
-						}
-					}
+					putchar(',');
+					putchar(' ');
 				}
 			}
 		}

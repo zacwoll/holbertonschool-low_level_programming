@@ -12,11 +12,11 @@ int main(void)
 
 	for (a = 0; a < 10; a++)
 	{
-		putchar(48 + a);
 		for (b = 0; b < 10; b++)
 		{
+			putchar(48 + a);
 			putchar(48 + b);
-			if (a != 9 && b != 9)
+			if (a != 9 || b != 9)
 			{
 				putchar(',');
 				putchar(' ');

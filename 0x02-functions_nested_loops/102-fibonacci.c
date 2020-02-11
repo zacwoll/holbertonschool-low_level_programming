@@ -1,4 +1,3 @@
-#include "holberton.h"
 #include <stdio.h>
 /**
   * main - Entry Point
@@ -6,7 +5,7 @@
   */
 int main(void)
 {
-	int i = 2, n = 50;
+	int i = 3, n = 50;
 	unsigned long a = 1, b = 2, term;
 
 	printf("%lu, %lu, ", a, b);

@@ -32,5 +32,6 @@ int main(void)
 		a = b;
 		b = term;
 	}
+	printf("\n");
 	return (0);
 }

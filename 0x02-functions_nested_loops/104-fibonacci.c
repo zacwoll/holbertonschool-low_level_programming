@@ -10,7 +10,7 @@ int main(void)
 	unsigned long cutoff = 10000000000000000;
 
 	printf("%lu, %lu", a, b);
-	for (; i < 100; i++)
+	for (; i < 99; i++)
 	{
 		printf(", ");
 		term = a + b;

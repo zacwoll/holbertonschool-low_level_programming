@@ -1,6 +1,5 @@
 #include "holberton.h"
 #include <stdio.h>
-/* potential error, how many digits are we using? */
 /**
   * print_to_98 - prints all natural numbers from n to 98
   * @n: print from n to 98

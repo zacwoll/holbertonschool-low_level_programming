@@ -1,21 +1,23 @@
 #include "holberton.h"
 #include <stdio.h>
 /**
-  * print_fib - prints the first 50 Fibonacci numbers starting with 1 and 2
+  * main - Entry Point
   * Return: void
   */
-void print_fib(void)
+int main(void)
 {
-	int i = 2, n = 50, a = 1, b = 2, term;
+	int i = 2, n = 50;
+	unsigned long a = 1, b = 2, term;
 
-	printf("%d, %d, ", a, b);
-	for (i; i < n - 1; i++)
+	printf("%lu, %lu, ", a, b);
+	for (; i <= n; i++)
 	{
 		term = a + b;
 		a = b;
 		b = term;
-		printf("%d, ", term);
+		printf("%lu, ", term);
 	}
 	term = a + b;
-	printf("%d\n", term);
+	printf("%lu\n", term);
+	return (0);
 }

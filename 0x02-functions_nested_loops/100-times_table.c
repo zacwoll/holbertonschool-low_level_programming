@@ -1,5 +1,4 @@
 #include "holberton.h"
-/* potentially add a newline after the times table */
 /**
   * print_times_table - prints times table up to n
   * @n: the integer up to which the times table is printed
@@ -11,9 +10,9 @@ void print_times_table(int n)
 
 	if (n < 16 && n > 0)
 	{
-		for (i = 0; i < n + 1; i++)
+		for (i = 0; i <= n; i++)
 		{
-			for (j = 0; j < n + 1; j++)
+			for (j = 0; j <= n; j++)
 			{
 				product = i * j;
 				if (product > 99)

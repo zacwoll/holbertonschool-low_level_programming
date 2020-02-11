@@ -1,6 +1,6 @@
 #include <stdio.h>
 /**
-  * print_sum - prints the sum of the multiples of 3 and 5 up to 1024
+  * main = Entry Point
   * Return: void
   */
 int main(void)

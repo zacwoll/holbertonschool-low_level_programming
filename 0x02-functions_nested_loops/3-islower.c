@@ -1,5 +1,4 @@
 #include "holberton.h"
-#include <ctype.h>
 /**
   * _islower - checks if lowercase
   * @c: integer to be checked
@@ -7,7 +6,7 @@
   */
 int _islower(int c)
 {
-	if islower(c)
+	if (c >= 'a' && c <= 'z')
 		return (1);
 	return (0);
 }

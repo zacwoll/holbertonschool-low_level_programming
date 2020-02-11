@@ -1,20 +1,23 @@
 #include <stdio.h>
 /**
-  * liber_abbaci - prints terms in the fibonacci sequence up to 4mil
+  * main - Entry Point
   * Return: void
   */
-void liber_abbaci(void)
+int main(void)
 {
-	int a = 1, b = 2, term = 2;
+	int loop = 1;
+	unsigned int total = 0, a = 1, b = 2, term = 2;
 
-	printf("%d", a, term);
-	while (true)
+	while (loop)
 	{
+		if (b % 2 == 0)
+			total += term;
 		if (term > 4000000)
 			break;
-		printf(", %d", term);
 		term = a + b;
 		a = b;
 		b = term;
 	}
+	printf("%u\n", total);
+	return (0);
 }

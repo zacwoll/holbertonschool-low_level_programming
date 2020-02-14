@@ -1,7 +1,6 @@
 #include <stdio.h>
 /**
   * main - Entry Point
-  * Description:
   * Return: 0 (Success)
   */
 int main(void)
@@ -20,7 +19,7 @@ int main(void)
 				printf("Buzz");
 		}
 		if (i < 100)
-			rintf(" ");
+			printf(" ");
 	}
 	return (0);
 }

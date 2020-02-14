@@ -1,6 +1,6 @@
 #include "holberton.h"
 /**
-  * print_numbers - Entry Point
+  * print_most_numbers - Entry Point
   * Return: 0 (Success)
   */
 void print_most_numbers(void)

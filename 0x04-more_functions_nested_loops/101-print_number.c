@@ -30,20 +30,16 @@ void print_number(int n)
 		}
 		_putchar(num / div + '0');
 		/* if remainder of number is 0, print the zeroes */
-		if (num % div < 10)
+		while (num % div < div / 10)
 		{
-			while (div > 10)
-			{
-				_putchar('0');
-				div /= 10;
-			}
+			_putchar('0');
+			div /= 10;
 		}
 		print_number(num % div);
 	}
 	else
 	{
-		/* print the final zero */
+		/* print the final digit */
 		_putchar(num + '0');
-		_putchar('\n');
 	}
 }

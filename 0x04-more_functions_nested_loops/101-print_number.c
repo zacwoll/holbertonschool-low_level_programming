@@ -33,6 +33,8 @@ void print_number(int n)
 		while (num % div < div / 10)
 		{
 			_putchar('0');
+			if (num == 10)
+				return;
 			div /= 10;
 		}
 		print_number(num % div);

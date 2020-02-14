@@ -7,7 +7,7 @@
 int main(void)
 {
 	long i = 1, largest = 1;
-	/* static long target = 612852475143; */
+	static long target = 612852475143; /* target number */
 	static long square_root = 782848; /* square root of target */
 	long a = target;
 

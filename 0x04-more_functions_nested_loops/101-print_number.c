@@ -30,7 +30,7 @@ void print_number(int n)
 		}
 		_putchar(num / div + '0');
 		/* if remainder of number is 0, print the zeroes */
-		if (num % div == 0)
+		if (num % div < 10)
 		{
 			while (div > 10)
 			{

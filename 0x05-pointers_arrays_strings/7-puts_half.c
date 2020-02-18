@@ -1,5 +1,4 @@
 #include "holberton.h"
-#include <stdio.h>
 /**
   * puts_half - prints a string, followed by a new line
   * @str : string to be printed
@@ -17,19 +16,12 @@ void puts_half(char *str)
 		i++;
 	}
 
-	i = i / 2 - 1;
+	i = i / 2;
 	s = str + i;
-	while (*s++)
+
+	while (*s)
 	{
 		_putchar(*s);
+		s++;
 	}
 }
-
-int main(void)
-{
-    char *str;
-
-    str = "0123456789";
-    puts_half(str);
-    return (0);
-}	

@@ -10,18 +10,15 @@ void puts_half(char *str)
 	char *s = str;
 	int i = 0;
 
-	while (*s)
+	while (*(s + i))
 	{
-		s++;
 		i++;
 	}
 
 	i = i / 2;
 	s = str + i;
-
 	while (*s)
 	{
-		_putchar(*s);
-		s++;
+		_putchar(*s++);
 	}
 }

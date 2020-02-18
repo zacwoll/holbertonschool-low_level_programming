@@ -5,13 +5,15 @@
   * @str : string to be printed
   * Return: void
   */
-
+/* str points to "101234567890806" */
 void puts2(char *str)
 {
-	while ((*(str + 1) != 0) && (*(str + 2) != 0))
+	_putchar(*str);
+	while (*(str + 1) && *(str + 2))
 	{
-		_putchar(*str);
 		str += 2;
+		_putchar(*str);
 	}
+
 	_putchar('\n');
 }

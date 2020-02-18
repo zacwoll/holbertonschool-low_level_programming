@@ -1,8 +1,8 @@
 #include "holberton.h"
-#include <stdio.h>
 /**
   * print_array - prints an array, followed by a new line
-  * @str : string to be printed
+  * @a : pointer to array
+  * @n : size of array
   * Return: void
   */
 

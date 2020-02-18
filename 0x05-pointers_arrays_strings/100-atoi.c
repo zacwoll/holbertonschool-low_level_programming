@@ -4,10 +4,28 @@
 int _atoi(char *s)
 {
 	char *ele = s;
-	if ((*ele >= 'a' && *ele <= 'z') || (*ele >= 'A' && *ele <= 'Z'))
-		return (48);
-	else
-		return (97);
+	int num = 0, negative = 0, is_num = 0;
+	
+	while (*ele)
+	{
+		if (*ele == '+')
+			negative += 1;
+		else if (*ele == '-')
+			negative -= 1;
+
+		if (*ele >= '0' && *ele <= '9')
+		{
+			num *= 10;
+			num += *ele - '0';
+			is_num = 1;
+		}
+		else if (is_num)
+			break;
+		ele++;
+	}
+	if (negative < 0)
+		num = -num;
+	return num;
 }
 
 int main(void)

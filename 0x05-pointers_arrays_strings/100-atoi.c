@@ -17,9 +17,9 @@ int _atoi(char *s)
 	while (*ele)
 	{
 		if (*ele == '+')
-			negative += 1;
+			negative *= 1;
 		else if (*ele == '-')
-			negative -= 1;
+			negative *= -1;
 
 		if (*ele >= '0' && *ele <= '9')
 		{

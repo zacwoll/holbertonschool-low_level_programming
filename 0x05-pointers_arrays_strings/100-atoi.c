@@ -1,11 +1,16 @@
 #include "holberton.h"
 #include <stdio.h>
 
+/**
+  * _atoi - convert a string into an integer
+  * @s : pointer to string
+  * Return: int that has been converted from a character string
+  */
 int _atoi(char *s)
 {
 	char *ele = s;
 	int num = 0, negative = 0, is_num = 0;
-	
+
 	while (*ele)
 	{
 		if (*ele == '+')
@@ -25,28 +30,5 @@ int _atoi(char *s)
 	}
 	if (negative < 0)
 		num = -num;
-	return num;
-}
-
-int main(void)
-{
-    int n;
-
-    n = _atoi("98");
-    printf("%d\n", n);
-    n = _atoi("-402");
-    printf("%d\n", n);
-    n = _atoi("          ------++++++-----+++++--98");
-    printf("%d\n", n);
-    n = _atoi("214748364");
-    printf("%d\n", n);
-    n = _atoi("0");
-    printf("%d\n", n);
-    n = _atoi("Suite 402");
-    printf("%d\n", n);
-    n = _atoi("         +      +    -    -98 Battery Street; San Francisco, CA 94111 - USA             ");
-    printf("%d\n", n);
-    n = _atoi("---++++ -++ Sui - te -   402 #cisfun :)");
-    printf("%d\n", n);
-    return (0);
+	return (num);
 }

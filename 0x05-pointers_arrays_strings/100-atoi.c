@@ -27,7 +27,7 @@ int _atoi(char *s)
 			if (negative < 0)
 				num -= *ele - '0';
 			else
-				num += *ele - '0'; 
+				num += *ele - '0';
 			is_num = 1;
 		}
 		else if (is_num)

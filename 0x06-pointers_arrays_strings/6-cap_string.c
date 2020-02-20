@@ -12,16 +12,16 @@ char *cap_string(char *c)
 
 	while (*c)
 	{
-		if (cap)
+		if (*c >= 'a' && *c <= 'z')
 		{
-			if (*c >= 'a' && *c <= 'z')
+			if (cap)
 			{
 				*c -= 'a' - 'A';
 				cap = 0;
 			}
 		}
-		else if (*c >= 'a' && *c <= 'z')
-		{}
+		else if (*c >= 'A' && *c <= 'Z')
+			cap = 0;
 		else
 		{
 			while (sep[i])

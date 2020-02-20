@@ -6,24 +6,23 @@
   */
 char *cap_string(char *c)
 {
-	char *p = c, *prev = c;
+	char *p = c;
 	 char *sep = " \t\n,;.!?\"(){}";
 	int i = 0, cap = 1;
 
 	while (*c)
 	{
-		for (i = 0; sep[i]; i++)
-		{
-			if (*prev == sep[i])
-				cap = 1;
-		}
 		if (cap)
 		{
 			if (*c >= 'a' && *c <= 'z')
 				*c -= 'a' - 'A';
 			cap = 0;
 		}
-		prev = c;
+		for (i = 0; sep[i]; i++)
+		{
+			if (*c == sep[i])
+				cap = 1;
+		}
 		c++;
 	}
 	return (p);

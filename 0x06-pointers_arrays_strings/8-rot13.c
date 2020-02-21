@@ -8,8 +8,8 @@
 char *rot13(char *c)
 {
 	char *p = c;
-	char *alpha = "abcdefghijklmnopqrstuvwxyz";
-	char *rot13 = "nopqrstuvwxyzabcdefghijklm";
+	char *alpha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	char *rot13 = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
 	int i = 0;
 
 	while (*c)
@@ -19,11 +19,6 @@ char *rot13(char *c)
 			if (*c == alpha[i])
 			{
 				*c = rot13[i];
-				break;
-			}
-			else if (*c == alpha[i] - 'a' + 'A')
-			{
-				*c = rot13[i] - 'a' + 'A';
 				break;
 			}
 		}

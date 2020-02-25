@@ -1,5 +1,4 @@
 #include "holberton.h"
-
 /**
   * print_chessboard - prints the chessboard
   * @a: chessboard data
@@ -7,14 +6,14 @@
   */
 void print_chessboard(char (*a)[8])
 {
-	int i;
+	int i, j;
 
-	for (; (*a)[8]; a++)
+	for (j = 0; j < 8; j++)
 	{
 		for (i = 0; i < 8; i++)
 		{
-			_putchar((*a)[i]);
+			_putchar(a[j][i]);
 		}
-		_putchar("\n");
+		_putchar('\n');
 	}
 }

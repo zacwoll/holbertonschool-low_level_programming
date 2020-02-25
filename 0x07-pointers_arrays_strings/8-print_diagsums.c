@@ -17,7 +17,7 @@ void print_diagsums(int *a, int size)
 	{
 		if (i % (size + 1) == 0)
 			left += a[i];
-		if ((i % (size - 1) == 0) && (i <= (size * size - size)))
+		if ((i % (size - 1) == 0) && (i < (size * size - 1)))
 			right += a[i];
 	}
 	printf("%d, %d\n", left, right);

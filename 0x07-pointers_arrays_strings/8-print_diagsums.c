@@ -10,19 +10,14 @@
 void print_diagsums(int *a, int size)
 {
 	/* i, j are the iterators; left, right are the diags */
-	int i, j, left, right;
+	int i, left, right;
 
-	for (i = 0; (*a)[i]; i++)
+	for (i = 0; i < size * size; i++)
 	{
-		for (j = 0; j < size; j++)
-		{
-			if (i == j)
-				left += (*a)[i][j];
-			if (size - 1 - i == j)
-				right += (*a)[size - 1 - i][j];
-		}
+		if (i % (size + 1) == 0)
+			left += a[i];
+		if ((i % (size - 1) == 0) && (i <= (size * size - size)))
+			right += a[i];
 	}
-
-	printf("left diagonal = %d", left);
-	printf("right diagonal = %d", right);
+	printf("%d, %d", left, right);
 }

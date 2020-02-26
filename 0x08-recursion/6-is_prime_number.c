@@ -1,5 +1,11 @@
 #include "holberton.h"
-#include <stdio.h>
+
+/**
+  * is_prime - recursively determines if number is prime
+  * @n: returns if n is prime or not
+  * @i: iterator to track down the primality of n
+  * Return: int, 1 if true, 0 if false
+  */
 int is_prime(int n, int i)
 {
 	if (i == n)

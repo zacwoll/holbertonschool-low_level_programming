@@ -19,7 +19,7 @@ int findRoot(int n, int i)
 		return (-1);
 	}
 	else
-		findRoot(n, i + 1);
+		return (findRoot(n, i + 1));
 }
 
 /**

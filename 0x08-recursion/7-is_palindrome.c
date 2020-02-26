@@ -1,10 +1,10 @@
 #include "holberton.h"
+
 /**
   * _strlen_recursion - returns the length of a string
   * @s: char pointer to string
   * Return: int length
   */
-
 int _strlen_recursion(char *s)
 {
 	int total = 0;
@@ -16,6 +16,13 @@ int _strlen_recursion(char *s)
 	return (total);
 }
 
+/**
+  * is_pal - determines if string is palindrome
+  * @s: string to be checked
+  * @start: left element
+  * @end: right element
+  * Return: int, 1 if true, 0 if false
+  */
 int is_pal(char *s, int start, int end)
 {
 	if (start > end)
@@ -32,7 +39,7 @@ int is_pal(char *s, int start, int end)
 int is_palindrome(char *s)
 {
 	int i = _strlen_recursion(s);
-	
+
 	if (!(*s))
 		return (1);
 	return (is_pal(s, 0, i - 1));

@@ -1,18 +1,7 @@
 #include "holberton.h"
 
 /**
- * wildcmp - Check if two strings can be considered identical
- * @s1: The first string
- * @s2: The second string
- * Return: int, 1 if true, 0 if false
- */
-int wildcmp(char *s1, char *s2)
-{
-	return (_wildcmp(s1, s2));
-}
-
-/**
- * check_wildcmp - Recursively check if a string is a palindrome
+ * _wildcmp - Recursively check if a string is a palindrome
  * @s1: The first string
  * @s2: The second string
  * Return: int, 1 if true, 0 if false
@@ -36,4 +25,15 @@ int _wildcmp(char *s1, char *s2)
 	}
 	else
 		return (0);
+}
+
+/**
+ * wildcmp - Check if two strings can be considered identical
+ * @s1: The first string
+ * @s2: The second string
+ * Return: int, 1 if true, 0 if false
+ */
+int wildcmp(char *s1, char *s2)
+{
+	return (_wildcmp(s1, s2));
 }

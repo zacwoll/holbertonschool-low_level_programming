@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <stdlib.h>
 /**
   * fewest_coins - returns the fewest number of coins that make up n
   * @n: change that will be split into fewest coins
@@ -40,7 +40,7 @@ int fewest_coins(int n)
   */
 int main(int argc, char **argv)
 {
-	int change, num;
+	int change;
 
 	if (argc != 2)
 	{
@@ -54,4 +54,5 @@ int main(int argc, char **argv)
 	}
 	else
 		printf("%d\n", fewest_coins(change));
+	return (0);
 }

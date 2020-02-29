@@ -1,8 +1,14 @@
 #include <stdio.h>
 
+/**
+  * fewest_coins - returns the fewest number of coins that make up n
+  * @n: change that will be split into fewest coins
+  * Return: int
+  */
 int fewest_coins(int n)
 {
 	int num_coins = 0;
+
 	while (n / 25 > 0)
 	{
 		num_coins++;
@@ -23,16 +29,22 @@ int fewest_coins(int n)
 		num_coins++;
 		n -= 1;
 	}
-	return num_coins;
+	return (num_coins);
 }
 
+/**
+  * main - Entry Point
+  * @argc: number of arguments
+  * @argv: vector of arguments
+  * Return: int
+  */
 int main(int argc, char **argv)
 {
 	int change, num;
 
 	if (argc != 2)
 	{
-		printf ("Error\n");
+		printf("Error\n");
 		return (1);
 	}
 	change = atoi(argv[1]);

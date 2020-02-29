@@ -1,6 +1,13 @@
 #include "holberton.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+/**
+  * main - Entry Point
+  * @argc: number of arguments
+  * @argv: vector of arguments
+  * Return: int
+  */
 int main(int argc, char **argv)
 {
 	int sum = 0, i, part;

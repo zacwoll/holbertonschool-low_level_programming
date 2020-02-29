@@ -9,11 +9,14 @@
   */
 int main(int argc, char **argv)
 {
-	int i;
+	char *name;
 
-	for (i = 0; argv[0][i]; i++)
-	{
-		_putchar(argv[0][i]);
-	}
-	_putchar('\n');
+	if (argv[1])
+		name = argv[1];
+	else
+		name = argv[0];
+
+	printf("%s\n", name);
+	(void)argc;
+	return (0);
 }

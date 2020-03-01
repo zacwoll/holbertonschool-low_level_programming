@@ -24,6 +24,11 @@ int fewest_coins(int n)
 		num_coins++;
 		n -= 5;
 	}
+	while (n / 2 > 0)
+	{
+		num_coins++;
+		n -= 2;
+	}
 	while (n / 1 > 0)
 	{
 		num_coins++;
@@ -42,12 +47,15 @@ int main(int argc, char **argv)
 {
 	int change;
 
+	/* if there is more than one argument */
 	if (argc != 2)
 	{
 		printf("Error\n");
 		return (1);
 	}
+	/* set change to parsed input */
 	change = atoi(argv[1]);
+	/* if change is less than 0, return 0 and quit */
 	if (change < 0)
 	{
 		printf("0\n");

@@ -56,6 +56,7 @@ char **strtow(char *str)
 {
 	char **s;
 	int i, word_count, is_word = 1, word = 0;
+
 	if (str == NULL)
 		return (NULL);
 	/* Find the word count */

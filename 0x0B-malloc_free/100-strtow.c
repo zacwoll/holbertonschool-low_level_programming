@@ -2,11 +2,6 @@
 #include <stdlib.h>
 #include "holberton.h"
 
-/* Malloc space for array of pointers that point to words */
-/* fill each pointer with words */
-/* each word is seperated by spaces */
-/* Null terminate */
-
 /**
   * _strlen - gets the length of a substring
   * @str: string we find substring in
@@ -19,7 +14,6 @@ int _strlen(char *str, int i)
 
 	for (j = 0; str[i + j] != ' ' && str[i + j] != '\0'; j++)
 	{}
-
 	return (j);
 }
 
@@ -33,13 +27,10 @@ int _strlen(char *str, int i)
   */
 char *word_store(char **s, char *str, int word_count, int i)
 {
-	/* init */
 	char *p;
 	int f, j;
-	/* get the length of the word */
 	/* mallocate the space for the word */
 	p = malloc(_strlen(str, i) * sizeof(char));
-	/* check if malloc failed */
 	if (p == NULL)
 	{
 		for (f = 0; f < word_count; f++)
@@ -52,7 +43,6 @@ char *word_store(char **s, char *str, int word_count, int i)
 	{
 		p[j] = str[i + j];
 	}
-	/* Null-Terminate the word */
 	p[j] = '\0';
 	return (p);
 }
@@ -64,10 +54,8 @@ char *word_store(char **s, char *str, int word_count, int i)
   */
 char **strtow(char *str)
 {
-	/* declarations */
 	char **s;
 	int i, word_count, is_word = 1, word = 0;
-	/* Input checking */
 	if (str == NULL)
 		return (NULL);
 	/* Find the word count */
@@ -81,18 +69,19 @@ char **strtow(char *str)
 		else
 			is_word = 0;
 	}
+	if (word_count == 0)
+		return (NULL);
 	/* Allocate space for words (char *) */
 	s = malloc((word_count + 1) * sizeof(char *));
-	/* Check if malloc failed */
 	if (s == NULL)
 		return (NULL);
 
+	is_word = 1;
 	for (i = 0; str[i]; i++)
 	{
 		if (is_word && str[i] != ' ')
 		{
 			/* write word into s[word] */
-			s[word] = malloc(_strlen(str, i) * sizeof(char));
 			s[word] = word_store(s, str, word, i);
 			word++;
 		}

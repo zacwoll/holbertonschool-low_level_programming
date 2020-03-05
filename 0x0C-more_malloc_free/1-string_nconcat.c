@@ -1,6 +1,13 @@
 #include "holberton.h"
 #include <stdlib.h>
 
+/**
+  * string_nconcat - concatenates n bytes from string2
+  * @s1: string to be appended to
+  * @s2: string to have n bytes appended
+  * @n: number of bytes to append to string 1
+  * Return: char *
+  */
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
 	/* declarations */

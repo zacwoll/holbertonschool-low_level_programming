@@ -1,6 +1,12 @@
 #include "holberton.h"
 #include <stdlib.h>
 
+/**
+  * _calloc - malloc but with zeroes
+  * @nmemb: n members
+  * @size: size of type
+  * Return: void *
+  */
 void *_calloc(unsigned int nmemb, unsigned int size)
 {
 	void *ptr;

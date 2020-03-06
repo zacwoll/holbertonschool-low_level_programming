@@ -50,8 +50,10 @@ void mult(int *res, char *n1, char *n2, int len1, int len2)
 			res[i + j + 1] += sum;
 	}
 	/* Take these magic numbers out */
-	for (i = 0; res[i] == 0; i++)
+	for (i = 0; res[i] == 0 && i < len1 + len2; i++)
 	{}
+	if (i == len1 + len2)
+		_putchar('0');
 	for (; i < len1 + len2; i++)
 		_putchar(res[i] + '0');
 	_putchar('\n');
@@ -97,7 +99,7 @@ void err(int status)
   */
 int main(int argc, char **argv)
 {
-	int i, j, len1 = 0, len2 = 0, nonzero = 0;
+	int i, j, len1 = 0, len2 = 0;
 	int *res;
 
 	/* if there aren't two numbers as arguments */
@@ -114,33 +116,12 @@ int main(int argc, char **argv)
 		if (i == 1)
 		{
 			for (j = 0; argv[i][j]; j++)
-			{
 				len1++;
-				if (argv[i][j] != '0')
-					nonzero = 1;
-			}
-			if (!nonzero)
-			{
-				_putchar('0');
-				_putchar('\n');
-				return (0);
-			}
 		}
 		if (i == 2)
 		{
-			nonzero = 0;
 			for (j = 0; argv[i][j]; j++)
-			{
 				len2++;
-				if (argv[i][j] != '0')
-					nonzero = 1;
-			}
-			if (!nonzero)
-			{
-				_putchar('0');
-				_putchar('\n');
-				return (0);
-			}
 		}
 	}
 	res = int_calloc(len1 + len2, sizeof(int));

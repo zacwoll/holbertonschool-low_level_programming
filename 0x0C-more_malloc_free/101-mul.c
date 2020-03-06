@@ -124,7 +124,7 @@ int main(int argc, char **argv)
 		}
 	}
 	/* maybe use len1 + len2 + 1 here */
-	res = int_calloc(len1 + len2, sizeof(int));
+	res = int_calloc(len1 + len2 + 1, sizeof(int));
 	if (res == NULL)
 		err(98);
 	/* actual multiply call */

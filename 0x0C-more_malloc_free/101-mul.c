@@ -89,7 +89,6 @@ void err(int status)
 	_putchar('\n');
 	exit(status);
 }
-
 /**
   * main - Entry Point
   * @argc: argument count
@@ -98,7 +97,7 @@ void err(int status)
   */
 int main(int argc, char **argv)
 {
-	int i, j, len1 = 0, len2 = 0;
+	int i, j, len1 = 0, len2 = 0, nonzero = 0;
 	int *res;
 
 	/* if there aren't two numbers as arguments */
@@ -115,16 +114,36 @@ int main(int argc, char **argv)
 		if (i == 1)
 		{
 			for (j = 0; argv[i][j]; j++)
+			{
 				len1++;
+				if (argv[i][j] != '0')
+					nonzero = 1;
+			}
+			if (!nonzero)
+			{
+				_putchar('0');
+				_putchar('\n');
+				return (0);
+			}
 		}
 		if (i == 2)
 		{
+			nonzero = 0;
 			for (j = 0; argv[i][j]; j++)
+			{
 				len2++;
+				if (argv[i][j] != '0')
+					nonzero = 1;
+			}
+			if (!nonzero)
+			{
+				_putchar('0');
+				_putchar('\n');
+				return (0);
+			}
 		}
 	}
-	/* maybe use len1 + len2 + 1 here */
-	res = int_calloc(len1 + len2 + 1, sizeof(int));
+	res = int_calloc(len1 + len2, sizeof(int));
 	if (res == NULL)
 		err(98);
 	/* actual multiply call */

@@ -2,6 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 
+/**
+  * new_dog - init a new dog struct
+  * @name: name of dog
+  * @age: age of dog
+  * @owner: owner of dog
+  * Return: dog_t *
+  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
 	dog_t *n_dog;

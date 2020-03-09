@@ -1,6 +1,35 @@
 #include "dog.h"
 #include <stdlib.h>
-#include <string.h>
+
+/**
+  * _strdup - copies a string to new memory
+  * @str: string to be copied
+  * Return: char *, string on pass, NULL on failure
+  */
+char *_strdup(char *str)
+{
+	int i;
+	char *p;
+
+	if (str == NULL)
+		return (NULL);
+
+	for (i = 0; str[i]; i++)
+	{
+	}
+
+	p = malloc((i + 1) * sizeof(char));
+	if (p == NULL || str == NULL)
+	{
+		free(p);
+		return (NULL);
+	}
+	for (; i >= 0; i--)
+	{
+		p[i] = str[i];
+	}
+	return (p);
+}
 
 /**
   * new_dog - init a new dog struct
@@ -16,13 +45,13 @@ dog_t *new_dog(char *name, float age, char *owner)
 	n_dog = malloc(sizeof(dog_t));
 	if (n_dog == NULL)
 		return (NULL);
-	n_dog->name = strdup(name);
+	n_dog->name = _strdup(name);
 	if (n_dog->name == NULL)
 	{
 		free(n_dog);
 		return (NULL);
 	}
-	n_dog->owner = strdup(owner);
+	n_dog->owner = _strdup(owner);
 	if (n_dog->owner == NULL)
 	{
 		free(n_dog->name);

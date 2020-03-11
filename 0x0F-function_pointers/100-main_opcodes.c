@@ -8,14 +8,15 @@
   */
 int main(int argc, char **argv)
 {
-	int i = 0;
-	/* There are two args */
+	/* declarations */
+	int i;
+	unsigned char *p = (char *) main;
+	/* input checking */
 	if (argc != 2)
 	{
 		printf("Error\n");
 		exit(1);
 	}
-	/* number_of_bytes is nonnegative */
 	if (atoi(argv[1]) < 0)
 	{
 		printf("Error\n");
@@ -23,11 +24,9 @@ int main(int argc, char **argv)
 	}
 
 	/* print the opcodes */
-	unsigned char *mf = (unsigned char *)argv[0];
-
-	for (i = 0; i < atoi(argv[1]); i++, mf++)
-		printf("%02x ", *mf);
-	printf("%02x\n", *mf);
+	for (i = 0; i < (atoi(argv[1]) - 1); i++, p++)
+		printf("%02x ", *p);
+	printf("%02x\n", *p);
 
 	return (0);
 }

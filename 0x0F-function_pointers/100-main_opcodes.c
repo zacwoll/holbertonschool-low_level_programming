@@ -25,13 +25,9 @@ int main(int argc, char **argv)
 	/* print the opcodes */
 	unsigned char *mf = (unsigned char *)argv[0];
 
-	for (i = 0; i < atoi(argv[1]); i++)
-	{
-		if (i != 0)
-			printf(" ");
-		printf("%02x", (unsigned int)mf[i]);
-	}
-	printf("\n");
+	for (i = 0; i < atoi(argv[1]); i++, mf++)
+		printf("%02x ", *mf);
+	printf("%02x\n", *mf);
 
 	return (0);
 }

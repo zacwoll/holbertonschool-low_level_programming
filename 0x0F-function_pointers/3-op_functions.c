@@ -46,7 +46,7 @@ int op_div(int a, int b)
 }
 
 /**
-  * op_add - mods two ints
+  * op_mod - mods two ints
   * @a: left int
   * @b: right int
   * Return: int, remainder of integer division

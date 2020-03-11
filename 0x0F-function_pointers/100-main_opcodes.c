@@ -25,7 +25,7 @@ int main(int argc, char **argv)
 	/* print the opcodes */
 	unsigned char *mf = (unsigned char *)argv[0];
 
-	for (i = 0; i < (atoi(argv[1]) - 1); i++)
+	for (i = 0; i < atoi(argv[1]); i++)
 	{
 		if (i != 0)
 			printf(" ");

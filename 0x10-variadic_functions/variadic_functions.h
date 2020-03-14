@@ -13,6 +13,11 @@ void print_all(const char * const format, ...);
 int _putchar(char c);
 
 /* structs */
+/**
+  * struct fm - format
+  * @fm: list of args passed to fnc
+  * @p: function switchboard
+  */
 typedef struct fm
 {
 	char *fm;

@@ -4,7 +4,7 @@
   * @term: our format tag
   * Return: int, number of flags
   */
-int num_flags(char *term)
+int num_flags(const char *term)
 {
 	const char *FLAGS = "+- 0123456789.#lh";
 	int i = 0, j = 0;
@@ -24,10 +24,10 @@ int num_flags(char *term)
 flags_t init_flags(flags_t flags)
 {
 	flags.flags = " +-0#";
-	size = 5;
-	i = 0;
+	flags.size = 5;
+	int i = 0;
 
-	for (; i < size; i++)
+	for (; i < flags.size; i++)
 	{
 		flags.values[i] = 0;
 	}
@@ -37,10 +37,10 @@ flags_t init_flags(flags_t flags)
 out_f_t init_out_flags(out_f_t out_flags)
 {
 	out_flags.has_ast = 0;
-	out_flags.num = 0;
+	out_flags.value = 0;
 }
 
-void set_flags(char *term, int size, flags_t flags)
+void set_flags(const char *term, int size, flags_t flags)
 {
 	char *OUTPUT = "123456789";
 	char *SIZE = "lh";
@@ -86,19 +86,19 @@ int _printf(const char *format, ...)
 		{'d', print_d},
 		{'i', print_d},
 		{'c', print_c},
-		{'s', print_str},
-		{NULL, NULL}
-  	}
+		{'s', print_s},
+		{'\0', NULL}
+  	};
 	flags_t flags;
 	/* place characters into buffer one at a time */
 	/* if we ever hit BUFSIZE this way, write buffer */
-	int BUFSIZE = 1024;
+	int BUF_SIZE = 1024;
 
 	/* input and malloc */
 	if (!format)
 		return (-1);
 	else
-		buffer = malloc(sizeof(char) * BUFSIZE);
+		buffer = malloc(sizeof(char) * BUF_SIZE);
 	if (!buffer)
 		return (-1);
 
@@ -106,16 +106,18 @@ int _printf(const char *format, ...)
 	va_start(ag, format);
 	flags = init_flags(flags);
 	buf_idx = 0;
+	i = 0;
 	while(format[i])
 	{
 		if (format[i] == '%')
 		{
 			/* It's a %tag, j is length to type */
 			j = num_flags(format + i + 1);
-			flags = setflags(format + i + 1, j);
+			/* I changed setflags to void but i may need to chage it back to flags_t */
+			set_flags(format + i + 1, j, flags);
 			i += j + 1; /* format[i] needs to point to the type now */
 			/* retrieve the converted string */
-			for (j = 0; specs[j]; j++)
+			for (j = 0; specs[j].s; j++)
 			{
 				if (format[i] == specs[j].s)
 				{
@@ -138,9 +140,9 @@ int _printf(const char *format, ...)
 		{
 			/* Not a %tag, add to buffer */
 			buffer[buf_idx] = format[i];
-			buff_idx++;
+			buf_idx++;
 			/* if the buffer is full, print and flush it */
-			if (buf_idx == BUFSIZE)
+			if (buf_idx == BUF_SIZE)
 			{
 				write(1, buffer, buf_idx);
 				buf_idx = 0;
@@ -148,11 +150,13 @@ int _printf(const char *format, ...)
 		}
 		i++;
 	}
-	if (buf_idx == BUFSIZE)
+	if (buf_idx == BUF_SIZE)
 	{
 		write(1, buffer, buf_idx);
-		buffer[0] = '\n'
+		buffer[0] = '\n';
 		buf_idx = 1;
 	}
+	else
+		buffer[buf_idx++] = '\n';
 	write(1, buffer, buf_idx);
 }

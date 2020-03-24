@@ -1,5 +1,10 @@
 #include "lists.h"
 
+/**
+  * free_listint_safe - frees a list and doesn't loop
+  * @h: head of list
+  * Return: size_t, size of list
+  */
 size_t free_listint_safe(listint_t **h)
 {
 	size_t count = 0;

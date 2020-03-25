@@ -12,7 +12,7 @@ listint_t *find_listint_loop(listint_t *head)
 	if (!head)
 		return (NULL);
 
-	back = head
+	back = head;
 	front = head;
 	while (front->next && front->next->next)
 	{

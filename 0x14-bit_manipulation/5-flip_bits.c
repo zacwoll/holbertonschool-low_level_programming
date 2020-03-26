@@ -1,21 +1,22 @@
 #include "holberton.h"
 
 /**
-  * flip_bits - finds how many flips it takes to set n to m
-  * @n: binary num1
-  * @m: binary num2
-  * Return: unsigned int, count of flips
-  */
+ * flip_bits - Return how many bits to flip to go to from one number to another
+ * @n: The first number
+ * @m: The second number
+ *
+ * Return: The number of bits you need to flip
+ */
 unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
-	unsigned int i = n ^ m;
-	unsigned int diff_count = 0;
+	unsigned int count = 0;
+	unsigned long int i = n ^ m;
 
 	while (i)
 	{
-		diff_count += i & 1;
+		count += i & 1;
 		i >>= 1;
 	}
 
-	return (diff_count);
+	return (count);
 }

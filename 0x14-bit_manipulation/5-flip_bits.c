@@ -1,10 +1,9 @@
 #include "holberton.h"
 
 /**
- * flip_bits - Return how many bits to flip to go to from one number to another
- * @n: The first number
- * @m: The second number
- *
+ * flip_bits - flip bits to change num1 into num2 or vice versa
+ * @n: binary num1
+ * @m: binary num2
  * Return: The number of bits you need to flip
  */
 unsigned int flip_bits(unsigned long int n, unsigned long int m)

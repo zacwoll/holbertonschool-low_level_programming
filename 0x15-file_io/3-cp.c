@@ -50,7 +50,7 @@ int main(int argc, char **argv)
   */
 void argc_err(void)
 {
-	dprintf(STDERR_FILENO, "Usage cp file_from file_to\n");
+	dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 	exit(97);
 }
 

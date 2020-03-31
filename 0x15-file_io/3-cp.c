@@ -37,11 +37,9 @@ int main(int argc, char **argv)
 	if (read_size == -1)
 		file_src_err(argv[1]);
 
-	fd_src = close(fd_src);
-	fd_dest = close(fd_dest);
-	if (fd_src)
+	if (close(fd_src))
 		file_close_err(fd_src);
-	if (fd_dest)
+	if (close(fd_dest))
 		file_close_err(fd_dest);
 
 	return (0);

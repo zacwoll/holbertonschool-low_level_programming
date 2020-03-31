@@ -44,7 +44,7 @@ int main(int argc, char **argv)
 	if (fd_dest)
 		file_close_err(fd_dest);
 
-	return (1);
+	return (0);
 }
 
 /**

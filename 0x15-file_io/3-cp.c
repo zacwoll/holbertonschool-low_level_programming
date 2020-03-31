@@ -11,7 +11,7 @@ void file_close_err(int fd);
   * main - Entry Point
   * @argc: argument count
   * @argv: command line arguments
-  * Return: 1 on success, 97-100 otherwise
+  * Return: 0 on success, 97-100 otherwise
   */
 int main(int argc, char **argv)
 {

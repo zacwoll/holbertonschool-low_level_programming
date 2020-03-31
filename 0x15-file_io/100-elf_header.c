@@ -10,7 +10,7 @@ void print_elf(void);
  * @argv: Argument Vector, contains name of ELF file
  * Return: 0 on success, 98 on fail
  */
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
 	int fd;
 	Elf64_Ehdr *h;

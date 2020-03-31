@@ -1,5 +1,11 @@
 #include "holberton.h"
 
+/**
+  * append_text_to_file - append text to filename
+  * @filename: filename string
+  * @text_content: content of text
+  * Return: 1 on success, -1 on fail
+  */
 int append_text_to_file(const char *filename, char *text_content)
 {
 	int fd;

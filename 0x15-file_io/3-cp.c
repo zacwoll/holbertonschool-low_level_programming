@@ -7,6 +7,12 @@ void file_src_err(char *filename);
 void file_dest_err(char *filename);
 void file_close_err(int fd);
 
+/**
+  * main - Entry Point
+  * @argc: argument count
+  * @argv: command line arguments
+  * Return: 1 on success, 97-100 otherwise
+  */
 int main(int argc, char **argv)
 {
 	int fd_src, fd_dest;
@@ -37,28 +43,43 @@ int main(int argc, char **argv)
 		file_close_err(fd_src);
 	if (fd_dest)
 		file_close_err(fd_dest);
-	
+
 	return (1);
 }
 
+/**
+  * argc_err - argument count error
+  */
 void argc_err(void)
 {
 	dprintf(STDERR_FILENO, "Usage cp file_from file_to\n");
 	exit(97);
 }
 
+/**
+  * file_src_err - can't read from src file
+  * @filename: filename string
+  */
 void file_src_err(char *filename)
 {
 	dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", filename);
 	exit(98);
 }
 
+/**
+  * file_dest_err - can't write to dest file
+  * @filename: filename string
+  */
 void file_dest_err(char *filename)
 {
 	dprintf(STDERR_FILENO, "Error: Can't write to %s\n", filename);
 	exit(99);
 }
 
+/**
+  * file_close_err - can't close file
+  * @fd: file descriptor of attempted close (-1)
+  */
 void file_close_err(int fd)
 {
 	dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);

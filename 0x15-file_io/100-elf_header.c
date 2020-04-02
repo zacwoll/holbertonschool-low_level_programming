@@ -1,48 +1,178 @@
 #include "holberton.h"
 #include <elf.h>
 
-void ptitle(char *title);
+void print_osabi_more(Elf64_Ehdr h);
 
 /**
-* errors - prints some errors
-* @msg: the error msg
-* Return: void
-*/
-void errors(char *msg)
+ * print_magic - prints ELF magic bytes
+ * @h: the ELF header struct
+ */
+void print_magic(Elf64_Ehdr h)
 {
-	/* declarations */
-	int len;
+	int i;
 
-	/* writing the error */
-	for (len = 0; msg[len]; len++)
-		;
-	write(STDERR_FILENO, msg, len);
-
-	exit(98);
+	printf("  Magic:   ");
+	for (i = 0; i < EI_NIDENT; i++)
+		printf("%2.2x%s", h.e_ident[i], i == EI_NIDENT - 1 ? "\n" : " ");
 }
+
 /**
-  * pentry - prints entry address
-  * @buffer: contains the entry address info
-  * Return: void
-  */
-void pentry(char *buffer)
+ * print_class - prints ELF class
+ * @h: the ELF header struct
+ */
+void print_class(Elf64_Ehdr h)
 {
-	ptitle("Entry point address");
-	/* this is all fucked */
-	printf("%x", buffer[2]);
-	/* end fucked */
-	printf ("\n");
+	printf("  Class:                             ");
+	switch (h.e_ident[EI_CLASS])
+	{
+		case ELFCLASS64:
+			printf("ELF64");
+		break;
+		case ELFCLASS32:
+			printf("ELF32");
+		break;
+		case ELFCLASSNONE:
+			printf("none");
+		break;
+	}
+	printf("\n");
 }
+
 /**
-  * ptype - prints type
-  *
-  *@buffer: contains type info
-  * Return: void
-  */
-void ptype(char *buffer)
+ * print_data - prints ELF data
+ * @h: the ELF header struct
+ */
+void print_data(Elf64_Ehdr h)
 {
-	ptitle("Type");
-switch (buffer[6])
+	printf("  Data:                              ");
+	switch (h.e_ident[EI_DATA])
+	{
+		case ELFDATA2MSB:
+			printf("2's complement, big endian");
+		break;
+		case ELFDATA2LSB:
+			printf("2's complement, little endian");
+		break;
+		case ELFDATANONE:
+			printf("none");
+		break;
+	}
+	printf("\n");
+}
+
+/**
+ * print_version - prints ELF version
+ * @h: the ELF header struct
+ */
+void print_version(Elf64_Ehdr h)
+{
+	printf("  Version:                           %d", h.e_ident[EI_VERSION]);
+	switch (h.e_ident[EI_VERSION])
+	{
+		case EV_CURRENT:
+			printf(" (current)");
+		break;
+		case EV_NONE:
+			printf("%s", "");
+		break;
+		break;
+	}
+	printf("\n");
+}
+
+/**
+ * print_osabi - prints ELF osabi
+ * @h: the ELF header struct
+ */
+void print_osabi(Elf64_Ehdr h)
+{
+	printf("  OS/ABI:                            ");
+	switch (h.e_ident[EI_OSABI])
+	{
+		case ELFOSABI_NONE:
+			printf("UNIX - System V");
+			break;
+		case ELFOSABI_HPUX:
+			printf("UNIX - HP-UX");
+			break;
+		case ELFOSABI_NETBSD:
+			printf("UNIX - NetBSD");
+			break;
+		case ELFOSABI_LINUX:
+			printf("UNIX - Linux");
+			break;
+		case ELFOSABI_SOLARIS:
+			printf("UNIX - Solaris");
+			break;
+		case ELFOSABI_AIX:
+			printf("UNIX - AIX");
+			break;
+		case ELFOSABI_IRIX:
+			printf("UNIX - IRIX");
+			break;
+		case ELFOSABI_FREEBSD:
+			printf("UNIX - FreeBSD");
+			break;
+		case ELFOSABI_TRU64:
+			printf("UNIX - TRU64");
+			break;
+		default:
+			print_osabi_more(h);
+			break;
+	}
+	printf("\n");
+}
+
+
+/**
+ * print_osabi_more - prints ELF osabi more
+ * @h: the ELF header struct
+ */
+void print_osabi_more(Elf64_Ehdr h)
+{
+	switch (h.e_ident[EI_OSABI])
+	{
+		case ELFOSABI_MODESTO:
+			printf("Novell - Modesto");
+			break;
+		case ELFOSABI_OPENBSD:
+			printf("UNIX - OpenBSD");
+			break;
+		case ELFOSABI_STANDALONE:
+			printf("Standalone App");
+			break;
+		case ELFOSABI_ARM:
+			printf("ARM");
+			break;
+		default:
+			printf("<unknown: %x>", h.e_ident[EI_OSABI]);
+			break;
+	}
+}
+
+/**
+ * print_abiversion  - prints ELF ABI version
+ * @h: the ELF header struct
+ */
+void print_abiversion(Elf64_Ehdr h)
+{
+	printf("  ABI Version:                       %d\n",
+		h.e_ident[EI_ABIVERSION]);
+}
+
+/**
+ * print_type - prints the ELF type
+ * @h: the ELF header struct
+ */
+void print_type(Elf64_Ehdr h)
+{
+	char *p = (char *)&h.e_type;
+	int i = 0;
+
+	printf("  Type:                              ");
+	if (h.e_ident[EI_DATA] == ELFDATA2MSB)
+		i = 1;
+	switch (p[i])
 	{
 		case ET_NONE:
 			printf("NONE (None)");
@@ -60,230 +190,83 @@ switch (buffer[6])
 			printf("CORE (Core file)");
 			break;
 		default:
-			printf("<unknown>: %x", buffer[6]);
+			printf("<unknown>: %x", p[i]);
 		break;
-	}	
-	printf ("\n");
-}
-/**
-* pABIversion - prints the ABI version
-* @buffer: contains the ABI version
-*
-* Return: void
-*/
-void pABIversion(char *buffer)
-{
-	/*handling the ABI set */
-	ptitle("ABI Version");
-
-	printf("%d", buffer[8]);
-
-	printf("\n");
-}
-/**
-* pos - printing the os/abi 
-* @buffer: contains os/abi info
-*
-* Return: void
-*/
-void pos(char *buffer)
-{
-	/* handling the OS ABI set */
-	ptitle("OS/ABI");
-
-	switch (buffer[7])
-	{
-		case ELFOSABI_SYSV:
-			printf("UNIX - System V");
-			break;
-		case ELFOSABI_HPUX:
-			printf("UNIX - HP-UX");
-			break;
-		case ELFOSABI_NETBSD:
-			printf("UNIX - NetBSD");
-			break;
-		case ELFOSABI_LINUX:
-			printf("UNIX - GNU");
-			break;
-		case ELFOSABI_SOLARIS:
-			printf("UNIX - Solaris");
-			break;
-		case ELFOSABI_IRIX:
-			printf("UNIX - IRIX");
-			break;
-		case ELFOSABI_FREEBSD:
-			printf("UNIX - FreeBSD");
-			break;
-		case ELFOSABI_TRU64:
-			printf("UNIX - TRU64");
-			break;
-		default:
-			printf("<unknown: %x>", (unsigned int)buffer[7]);
 	}
 	printf("\n");
 }
-/**
-* pversion- printing version
-* @buffer: contains version
-*
-* Return: void
-*/
-void pversion(char *buffer)
-{
-	/* handling the version set */
-	ptitle("Version");
 
-	switch (buffer[6])
+/**
+ * print_entry - prints the ELF entry point address
+ * @h: the ELF header struct
+ */
+void print_entry(Elf64_Ehdr h)
+{
+	int i = 0, len = 0;
+	unsigned char *p = (unsigned char *)&h.e_entry;
+
+	printf("  Entry point address:               0x");
+	if (h.e_ident[EI_DATA] != ELFDATA2MSB)
 	{
-		case EV_NONE:
-			printf("0");
-			break;
-		case EV_CURRENT:
-			printf("1 (current)");
-			break;
-		default:
-			printf("%d <unknown: %%lx>", (int)buffer[6]);
+		i = h.e_ident[EI_CLASS] == ELFCLASS64 ? 7 : 3;
+		while (!p[i])
+			i--;
+		printf("%x", p[i--]);
+		for (; i >= 0; i--)
+			printf("%02x", p[i]);
+		printf("\n");
 	}
-
-	printf("\n");
-}
-/**
-* pdata - printing the data handling
-* @buffer: contains data handling info
-*
-* Return: void
-*/
-void pdata(char *buffer)
-{
-	/* handling the data set */
-	ptitle("Data");
-
-	switch (buffer[5])
+	else
 	{
-		case ELFDATANONE:
-			printf("none");
-			break;
-		case ELFDATA2LSB:
-			printf("2's complement, little endian");
-			break;
-		case ELFDATA2MSB:
-			printf("2's complement, big endian");
-			break;
-		default:
-			printf("<unknown: %x>", (unsigned int)buffer[5]);
+		i = 0;
+		len = h.e_ident[EI_CLASS] == ELFCLASS64 ? 7 : 3;
+		while (!p[i])
+			i++;
+		printf("%x", p[i++]);
+		for (; i <= len; i++)
+			printf("%02x", p[i]);
+		printf("\n");
 	}
-
-	printf("\n");
 }
+
 /**
-* pmagic - printing the Magic we need
-* @buffer: contains magic
-*
-* Return: void
-*/
-void pmagic(char *buffer)
+ * main - program
+ * @ac: argument count
+ * @av: argument vector
+ *
+ * Return: 1 on success 0 on failure
+ */
+int main(int ac, char **av)
 {
-	/* declarations */
-	int i;
+	int fd;
+	Elf64_Ehdr h;
+	ssize_t b;
 
-	/* handling the magics */
-	printf("  Magic:   ");
-	for (i = 0; i < 16; i++)
-		printf("%.2x ", buffer[i]);
-	printf("\n");
-}
-/**
-* pclass - printing the class, in class
-* @buffer: the buffer containing class or none
-*
-* Return: void
-*/
-void pclass(char *buffer)
-{
-	/*handling the class */
-	ptitle("Class");
-
-	switch (buffer[4])
-	{
-		case ELFCLASSNONE:
-			printf("none");
-			break;
-		case ELFCLASS32:
-			printf("ELF32");
-			break;
-		case ELFCLASS64:
-			printf("ELF64");
-			break;
-		default:
-			printf("<unknown: %x>", (unsigned int)buffer[4]);
-	}
-	printf("\n");
-}
-/**
-* ptitle - printing titles since 2020
-* @title: the title
-*
-* Return: void
-*/
-void ptitle(char *title)
-{
-	/* declarations */
-	int size = 37;
-	int len, i;
-
-	/*handling the titles & spaces*/
-	printf("  ");
-	printf("%s:", title);
-
-	for (len = 0; title[len]; len++)
-		;
-
-	for (i = 0; i < size - 3 - len; i++)
-		printf(" ");
-}
-/**
-* main - print a ELF header and such
-* @argc: count of args
-* @argv: vector of args
-*
-* Return: int or exit code
-*/
-int main(int argc, char **argv)
-{
-	/* declarations */
-	int fd, readVal, i;
-	char buffer[16];
-	char match[4] = {0x7f, 'E', 'L', 'F'};
-	/* too many args? too few? */
-	if (argc != 2)
-		errors("Improper usage\n");
-	/* file descriptor, opening */
-	fd = open(argv[1], O_RDONLY);
+	if (ac != 2)
+		dprintf(STDERR_FILENO, "Usage: elf_header elf_filename\n"), exit(98);
+	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
-		errors("Could not open the file\n");
-	/* reading */
-	readVal = read(fd, buffer, 16);
-	if (readVal == -1)
-		errors("Could not read from the file\n");
-	/* checking for elfage */
-	for (i = 0; i < 4; i++)
+		dprintf(STDERR_FILENO, "Can't open file: %s\n", av[1]), exit(98);
+	b = read(fd, &h, sizeof(h));
+	if (b < 1 || b != sizeof(h))
+		dprintf(STDERR_FILENO, "Can't read from file: %s\n", av[1]), exit(98);
+	if (h.e_ident[0] == 0x7f && h.e_ident[1] == 'E' && h.e_ident[2] == 'L' &&
+			h.e_ident[3] == 'F')
 	{
-		if (buffer[i] != match[i])
-			errors("Sorry, it's not an ELF file!\n");
+		printf("ELF Header:\n");
 	}
-	/*printing the header! */
-	printf("ELF Header:\n");
-	pmagic(buffer);
-	pclass(buffer);
-	pdata(buffer);
-	pversion(buffer);
-	pos(buffer);
-	pABIversion(buffer);
-	ptype(buffer);
-	pentry(buffer);
-	/* close and check for close */
-	if (close(fd))
-		errors("Could not close the file");
+	else
+		dprintf(STDERR_FILENO, "Not ELF file: %s\n", av[1]), exit(98);
 
-	return (0);
+	print_magic(h);
+	print_class(h);
+	print_data(h);
+	print_version(h);
+	print_osabi(h);
+	print_abiversion(h);
+	print_type(h);
+	print_entry(h);
+	if (close(fd))
+		dprintf(STDERR_FILENO, "Error closing file descriptor: %d\n", fd), exit(98);
+	return (EXIT_SUCCESS);
 }

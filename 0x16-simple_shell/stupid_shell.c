@@ -5,7 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-int main(int ac, char **av)
+int main(void)
 {
 	char *line_buf = NULL;
 	char *temp = NULL;
@@ -22,7 +22,7 @@ int main(int ac, char **av)
 		printf("ShiP$ ");
 		line_size = getline(&line_buf, &line_buf_size, stdin);
 		
-		line_buf[strlen(line_buf) - 1] = '\0';
+		line_buf[line_size - 1] = '\0';
 
 		/* malloc for the number of strings */
 		temp = strdup(line_buf);
@@ -30,7 +30,7 @@ int main(int ac, char **av)
 		while (token != NULL)
 		{
 			argcount++;
-			token = strtok(NULL, temp);
+			token = strtok(NULL, " ");
 		}
 
 		args = malloc(argcount * sizeof(char *));
@@ -40,15 +40,12 @@ int main(int ac, char **av)
 		token = strtok(line_buf, " ");
 		while (token != NULL)
 		{
+			printf("%d: %s\n", argcount, token);
 			args[argcount] = token;
 			argcount++;
-			token = strtok(NULL, line_buf);
-			printf("%s==", token);
+			token = strtok(NULL, " ");
 		}
-
-		/* not used in this example */
-		(void)ac;
-
+		
 		/* executes our command */
 		child_pid = fork();
 		if (child_pid == -1)

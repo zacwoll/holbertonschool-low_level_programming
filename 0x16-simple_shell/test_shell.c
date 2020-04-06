@@ -19,6 +19,9 @@ int main(void)
 
 	argv = get_tokens(line, " ");
 
+	printf("%s FOUND in %s\n", argv[0], whitcher(argv[0]));
+	argv[0] = whitcher(argv[0]);
+
 	child_pid = fork();
 	if (child_pid == -1)
 	{

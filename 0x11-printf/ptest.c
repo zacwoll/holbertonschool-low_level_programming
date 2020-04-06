@@ -1,6 +1,7 @@
 #include "holberton.h"
-
+#include <limits.h>
 int main(void)
 {
-	_printf("%d", 5);
+	_printf("%%\n");
+	return (0);
 }

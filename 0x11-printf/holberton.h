@@ -5,36 +5,29 @@
 #include <stdio.h>
 #include <unistd.h>
 
-typedef struct flags
-{
-	char *flags;
-	int values[5];
-	int size;
-} flags_t;
-
 typedef struct spec
 {
 	char s;
-	char *(*f)(va_list, flags_t);
+	char *(*f)(va_list);
 } spec_t;
 
-typedef struct out_f
-{
-	int has_ast;
-	int value;
-} out_f_t;
-
 int _printf(const char *format, ...);
-char *print_d(va_list, flags_t);
-char *print_s(va_list, flags_t);
-char *print_c(va_list, flags_t);
-char *print_b(va_list, flags_t);
-char *print_ud(va_list, flags_t);
-char *print_o(va_list, flags_t);
-char *print_h(va_list, flags_t);
-char *print_uh(va_list, flags_t);
-char *print_p(va_list, flags_t);
-char *print_rev(va_list, flags_t);
-char *print_rot13(va_list, flags_t);
+char *print_d(va_list);
+char *print_s(va_list);
+char *print_S(va_list);
+char *print_perc(va_list);
+char *print_c(va_list);
+char *print_b(va_list);
+char *print_ud(va_list);
+char *print_o(va_list);
+char *print_h(va_list);
+char *print_u(va_list);
+char *print_p(va_list);
+char *print_x(va_list);
+char *print_X(va_list);
+char *print_rev(va_list);
+char *print_rot13(va_list);
+
+char *convert_to_hex(int dec);
 
 #endif /* HOLBERTON_H */

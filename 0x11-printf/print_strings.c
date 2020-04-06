@@ -10,21 +10,24 @@ char *print_S(va_list ag)
 	char *s = va_arg(ag, char *);
 	char *t;
 	char *hex;
-	int i, j, hex_count = 0, debug = 0;
+	int i, j, hex_count = 0;
 
+	if (!s)
+		return ("(null)");
 	for (i = 0; s[i]; i++)
 	{
-		if (s[i] < 32 || s[i] > 128)
+		if ((unsigned char)s[i] < 32 || (unsigned char)s[i] > 126)
 		{
 			hex_count++;
 		}
 	}
 
 	t = malloc(sizeof(char) * (i + hex_count * 3 + 1));
-
+	if (!t)
+		return ("(null)");
 	for (i = 0, j = 0; s[i]; i++, j++)
 	{
-		if (s[i] < 32 || s[i] > 128)
+		if ((unsigned char)s[i] < 32 || (unsigned char)s[i] > 126)
 		{
 			t[j++] = '\\';
 			t[j++] = 'x';
@@ -54,5 +57,7 @@ char *print_s(va_list ag)
 {
 	char *s = va_arg(ag, char *);
 
+	if (!s)
+		return ("(null)");
 	return (s);
 }

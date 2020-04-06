@@ -1,5 +1,4 @@
 #include "holberton.h"
-
 /**
   * print_d - print ints
   * @ag: variadic list
@@ -29,7 +28,7 @@ char *print_d(va_list ag)
 	/* malloc for number */
 	s = malloc(sizeof(char) * (upper_b + 1));
 	if (s == NULL)
-		return (NULL);
+		return ("(null)");
 
 	/* place our number in char *s */
 	if (sign < 0)
@@ -54,21 +53,8 @@ char *print_c(va_list ag)
 	char c = va_arg(ag, int);
 	char *s = malloc(sizeof(char) * (1 + 1));
 
-	s[0] = c;
-	s[1] = '\0';
-	return (s);
-}
-
-/**
-  * print_perc - print %
-  * @ag: variadic list
-  * Return: char *
-  */
-char *print_perc(va_list ag)
-{
-	char c = '%';
-	char *s = malloc(sizeof(char) * (1 + 1));
-
+	if (!s)
+		return ("(null)");
 	s[0] = c;
 	s[1] = '\0';
 	return (s);
@@ -82,7 +68,7 @@ char *print_perc(va_list ag)
 char *convert_to_hex(int dec)
 {
 	char *s;
-	int i, res = 0, rem, temp = dec, digits = 0;
+	int i, rem, temp = dec, digits = 0;
 
 	while (temp)
 	{
@@ -128,7 +114,7 @@ char *print_u(va_list ag)
 	/* malloc for number */
 	s = malloc(sizeof(char) * (digits + 1));
 	if (s == NULL)
-		return (NULL);
+		return ("(null)");
 
 	/* place our number in char *s */
 

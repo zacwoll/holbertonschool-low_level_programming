@@ -21,27 +21,7 @@ void print_number(int n)
 	else
 		num = n;
 
-	if (num > 9)
-	{
-		/* prints the leftmost digit of current num */
-		while (num / div > 9)
-		{
-			div *= 10;
-		}
-		_putchar(num / div + '0');
-		/* if remainder of number is 0, print the zeroes */
-		while (num % div < div / 10)
-		{
-			_putchar('0');
-			if (num == 10)
-				return;
-			div /= 10;
-		}
-		print_number(num % div);
-	}
-	else
-	{
-		/* print the final digit */
-		_putchar(num + '0');
-	}
+	if (num / 10 > 0)
+		print_number(num / 10);
+	_putchar(num % 10 + '0');
 }

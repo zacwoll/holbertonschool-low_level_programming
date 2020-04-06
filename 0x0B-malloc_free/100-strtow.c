@@ -29,8 +29,12 @@ char *word_store(char **s, char *str, int word_count, int i)
 {
 	char *p;
 	int f, j;
+
+	for (j = 0; str[i + j] != ' ' && str[i + j] != '\0'; j++)
+	{}
+
 	/* mallocate the space for the word */
-	p = malloc(_strlen(str, i) * sizeof(char));
+	p = malloc(j * sizeof(char));
 	if (p == NULL)
 	{
 		for (f = 0; f < word_count; f++)

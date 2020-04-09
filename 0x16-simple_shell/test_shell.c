@@ -8,7 +8,7 @@ int main(void)
 	ssize_t getline_size;
 	char **argv, **env, *path_to_file, *line = NULL;
 	struct stat st;
-
+	char *built_ins[] = {"cd", "setenv", "unsetenv", "exit"};
 	env = _initenv();
 
 	printf("ShiP$ ");

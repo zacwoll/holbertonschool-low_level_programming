@@ -20,7 +20,5 @@ char *whitcher(char *cmd)
 			return (tokens[i]);
 		}
 	}
-
-	printf("FULL PATH: %s\n", PATH);
-	return ("ERROR 404: FILE NOT FOUND");
+	return (PATH);
 }

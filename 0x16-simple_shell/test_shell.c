@@ -19,6 +19,8 @@ int main(void)
 	rem_comments(line);
 	argv = get_tokens(line, " ");
 
+	/* TODO: check if builtin, if builtin, fire off correct command */
+	
 	if (stat(argv[0], &st) == 0)
 		path_to_file = argv[0];
 	else

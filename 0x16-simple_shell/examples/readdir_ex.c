@@ -1,12 +1,13 @@
-#include "protos.h"
+#include <stdio.h>
+#include <dirent.h>
 
-int isin_dir(char *term, char *dir)
+int main()
 {
     DIR *folder;
     struct dirent *entry;
     int files = 0;
 
-    folder = opendir(dir);
+    folder = opendir(".");
     if(folder == NULL)
     {
         perror("Unable to read directory");
@@ -16,13 +17,13 @@ int isin_dir(char *term, char *dir)
     while( (entry=readdir(folder)) )
     {
         files++;
-	if (!strcmp(entry->d_name, term))
-	{
-		closedir(folder);
-		return (1);
-	}
+        printf("File %3d: %s\n",
+                files,
+                entry->d_name
+              );
     }
 
     closedir(folder);
+
     return(0);
 }

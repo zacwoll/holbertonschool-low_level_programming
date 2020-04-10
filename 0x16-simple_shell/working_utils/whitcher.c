@@ -1,8 +1,8 @@
 #include "protos.h"
 
-char *whitcher(char *cmd)
+char *whitcher(char *cmd, char ***env)
 {
-	char *PATH = getenv("PATH");
+	char *PATH = _getenv("PATH", env);
 	char **tokens;
 	int i;
 

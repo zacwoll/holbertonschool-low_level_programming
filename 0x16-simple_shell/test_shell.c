@@ -19,19 +19,9 @@ int main(void)
 	rem_comments(line);
 	argv = get_tokens(line, " ");
 
-	/* TODO: check if builtin, if builtin, fire off correct command */
+	cmd_handler(argv, &env);
 	
-	if (stat(argv[0], &st) == 0)
-		path_to_file = argv[0];
-	else
-	{
-		path_to_file = strcat(whitcher(argv[0]), "/");
-		path_to_file = strcat(path_to_file, argv[0]);
-	}
-
-	printf("path_to_file: %s\n", path_to_file);
-	
-	/* TODO: handle execve in a fnc */
+	/*
 	child_pid = fork();
 	if (child_pid == -1)
 	{
@@ -45,7 +35,7 @@ int main(void)
 	}
 
 	wait(&status);
-
+	*/
 	free(line);
 	free(argv);
 

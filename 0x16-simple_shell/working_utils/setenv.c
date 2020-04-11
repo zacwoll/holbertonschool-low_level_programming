@@ -29,9 +29,7 @@ void _setenv(char *entry, char ***env)
 	printf("=setenv\n\n");
 
 	for (var_count = 0; (*env)[var_count]; var_count++)
-	{
-		printf("%d: %s\n", var_count, (*env)[var_count]);
-	}
+	{}
 
 	new_env = malloc(sizeof(char *) * (var_count + 2));
 	for (var_count = 0; (*env)[var_count]; var_count++)
@@ -81,7 +79,6 @@ char *_getenv(char *entry, char ***env)
 	printf("=getenv\n");
 	for (var_count = 0; (*env)[var_count]; var_count++)
 	{
-		printf("%d: %s\n", var_count, (*env)[var_count]);
 		if (!strncmp(env_var, (*env)[var_count], strlen(env_var)))
 		{
 			env_var = strchr((*env)[var_count], '=') + 1;
@@ -91,47 +88,13 @@ char *_getenv(char *entry, char ***env)
 	free(env_var);
 	return NULL;
 }
-/* test of _getenv
-int main(void)
-{
-	char **env = _initenv();
 
-	printf("%s\n", _getenv("PATH", &env));
-	return (0);
-}
-*/
-/*
-int main(void)
+void _printenv(char ***env)
 {
-	char **env;
-	char *new_entry = strdup("ENVIRO=TOXIC");
 	int i;
-	pid_t child_pid;
-	int status;
 
-	env = _initenv();
-	
-	_setenv(new_entry, &env);
-	
-	char *argv[] = {"/usr/bin/env", NULL};
-	child_pid = fork();
-	if (child_pid == 0)
+	for (i = 0; (*env)[i]; i++)
 	{
-		execve(argv[0], argv, env);
-		return (0);
+		printf("%s\n", (*env)[i]);
 	}
-	wait(&status);
-	
-	printf("unset\n");
-	_unsetenv(new_entry, &env);
-
-	child_pid = fork();
-	if (child_pid == 0)
-	{
-		execve(argv[0], argv, env);
-		return (0);
-	}
-	wait(&status);
-	return (0);
 }
-*/

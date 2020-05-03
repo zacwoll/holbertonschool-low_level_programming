@@ -4,7 +4,8 @@
  * add_dnodeint - add node to beginning of dlistint_t list
  * @head: head of list
  * @n: data of new node
- * Return: The address of the new node, or NULL if it failed */
+ * Return: The address of the new node, or NULL if it failed
+ */
 dlistint_t *add_dnodeint(dlistint_t **head, const int n)
 {
 	dlistint_t *new;

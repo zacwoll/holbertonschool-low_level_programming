@@ -12,19 +12,19 @@ hash_node_t *new_node(const char *key, const char *value)
 
 	node = calloc(1, sizeof(hash_node_t));
 	if (!node)
-		return (0);
+		return (NULL);
 	node->key = strdup(key);
 	if (!node->key)
 	{
 		free(node);
-		return (0);
+		return (NULL);
 	}
 	node->value = strdup(value);
 	if (!node->value)
 	{
 		free(node->key);
 		free(node);
-		return (0);
+		return (NULL);
 	}
 
 	return (node);

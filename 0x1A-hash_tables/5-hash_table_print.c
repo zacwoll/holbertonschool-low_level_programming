@@ -1,6 +1,9 @@
-#include <stdbool.h>
 #include "hash_tables.h"
 
+/**
+ * hash_table_print - prints a hash table like a python dict
+ * @ht: hash table
+ */
 void hash_table_print(const hash_table_t *ht)
 {
 	hash_node_t *node = NULL;
@@ -17,7 +20,7 @@ void hash_table_print(const hash_table_t *ht)
 		while (node)
 		{
 			if (comma)
-				printf(",");
+				printf(", ");
 			printf("\'%s\': \'%s\'", node->key, node->value);
 			node = node->next;
 			comma = true;

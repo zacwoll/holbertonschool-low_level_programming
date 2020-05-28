@@ -134,6 +134,12 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	return (1);
 }
 
+/**
+ * shash_table_get - returns a value from a key in hash table
+ * @ht: hash table
+ * @key: key to search with
+ * Return: value or NULL
+ */
 char *shash_table_get(const shash_table_t *ht, const char *key)
 {
 	unsigned long int index;
@@ -152,13 +158,16 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
 		}
 		head = head->next;
 	}
-	return (NULL);	
+	return (NULL);
 }
 
+/**
+ * shash_table_print - prints a hash table like a python dict
+ * @ht: hash table
+ */
 void shash_table_print(const shash_table_t *ht)
 {
 	shash_node_t *node = NULL;
-	unsigned long int i;
 	bool comma = false;
 
 	if (!ht)
@@ -177,10 +186,13 @@ void shash_table_print(const shash_table_t *ht)
 	printf("}\n");
 }
 
+/**
+ * shash_table_print_rev - prints a hash table in reverse
+ * @ht: hash table
+ */
 void shash_table_print_rev(const shash_table_t *ht)
 {
 	shash_node_t *node = NULL;
-	unsigned long int i;
 	bool comma = false;
 
 	if (!ht)
@@ -199,6 +211,10 @@ void shash_table_print_rev(const shash_table_t *ht)
 	printf("}\n");
 }
 
+/**
+ * shash_table_delete - frees hash table
+ * @ht: hash table
+ */
 void shash_table_delete(shash_table_t *ht)
 {
 	shash_node_t *node, *del;

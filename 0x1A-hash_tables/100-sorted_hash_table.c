@@ -178,7 +178,7 @@ void shash_table_print(const shash_table_t *ht)
 	while (node)
 	{
 		if (comma)
-			printf(",");
+			printf(", ");
 		printf("\'%s\': \'%s\'", node->key, node->value);
 		node = node->snext;
 		comma = true;

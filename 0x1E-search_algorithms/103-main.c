@@ -14,6 +14,7 @@ int main(void)
     };
     size_t size = sizeof(array) / sizeof(array[0]);
 
+	printf("Found %d at index %d\n\n", 0, exponential_search(array, size, 0));
     printf("Found %d at index: %d\n\n", 62, exponential_search(array, size, 62));
     printf("Found %d at index: %d\n\n", 3, exponential_search(array, size, 3));
     printf("Found %d at index: %d\n", 999, exponential_search(array, size, 999));

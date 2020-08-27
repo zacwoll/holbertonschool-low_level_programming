@@ -10,14 +10,14 @@
 int advanced_binary(int *array, size_t size, int value)
 {
 	size_t low = 0, high = size - 1, mid;
-	int breaknow = 0;
 
 	if (!array)
 		return (-1);
 	while (1)
 	{
-		for (mid = low, printf("Searching in array: "); mid <= high; mid++)
-			printf("%d%s", array[mid], mid == high ? "\n" : ", ");
+		for (mid = low, printf("Searching in array: "); mid <= high;
+			mid++)
+		printf("%d%s", array[mid], mid == high ? "\n" : ", ");
 		mid = low + (high - low) / 2;
 
 		if (low == mid)

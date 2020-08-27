@@ -14,18 +14,21 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 		return (NULL);
 
 	for (; list->n < value && list->express; list_prev = list,
-			list = list->express)
-		printf("Value checked array[%lu] = [%d]\n", list->index, list->n);
+		list = list->express)
+	printf("Value checked array[%lu] = [%d]\n", list->index,
+		list->n);
 
 	printf("Value found between indexes [%lu] = [%lu]\n", list_prev->index,
-			list->index);
+		list->index);
 
 	for (list = list_prev; list->next && list->n < value; list = list->next)
-		printf("Value checked array[%lu] = [%d]\n", list->index, list->n);
+		printf("Value checked array[%lu] = [%d]\n", list->index,
+		list->n);
 
 	if (list->n == value)
 	{
-		printf("Value checked array[%lu] = [%d]\n", list->index, list->n);
+		printf("Value checked array[%lu] = [%d]\n", list->index,
+			list->n);
 		return (list);
 	}
 

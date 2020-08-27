@@ -4,7 +4,7 @@
  * linear_search - searches for a value in an array of ints using linear search
  * @array: *ptr to array
  * @size: size of array
- * @int: key to search for
+ * @value: key to search for
  * Return: first index where value is located or -1
  */
 int linear_search(int *array, size_t size, int value)

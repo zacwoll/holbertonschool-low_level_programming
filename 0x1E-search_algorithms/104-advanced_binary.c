@@ -29,9 +29,8 @@ int binary_search_recur(int *array, size_t low, size_t high, int value)
 		return (binary_search_recur(array, mid + 1, high, value));
 	else if (array[mid] > value)
 		return (binary_search_recur(array, low, mid, value));
-	else if (low != mid)
-		if (array[mid - 1] == value)
-			return (binary_search_recur(array, low, mid, value));
+	else if (low != mid && (array[mid - 1] == value))
+		return (binary_search_recur(array, low, mid, value));
 	else
 		return (mid);
 }

@@ -12,14 +12,13 @@ int largest_number(int a, int b, int c)
 {
 	int largest;
 
-	if (a > b)
+	// The logic was off, here (a > b && b > c) does not cover all cases
+	// where a is the largest number
+	if (a > b && a > c)
 	{
-		if (a > c)
-			largest = a;
-		else
-			largest = c;
+		largest = a;
 	}
-	else if (b > c)
+	else if (b > c && b > a)
 		largest = b;
 	else
 		largest = c;

@@ -2,7 +2,8 @@
 A short exploration of debugging, and debugging problems in C
 
 ## Description
-What we learned from this project:
+### What we learned from this project:
+===
 
 ### What is debugging?
 Debugging issues is a common problem for developers. It's confusing and a little frusterating to be met with an unexpected and/or difficult to find issue. Sometimes it is helpful to ask a peer for a second set of eyes on a problem, but often we should look first to what error messages we are met with first. In C, gcc often represents bugs with:

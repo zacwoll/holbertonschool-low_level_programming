@@ -1,18 +1,21 @@
 #include "holberton.h"
-/**
-  * _strcpy - prints an array, followed by a new line
-  * @dest : destination array
-  * @src : string to be cpied
-  * Return: void
-  */
 
+/**
+  * _strcpy - copy src string into the dest ptr
+  * @dest : destination ptr
+  * @src : string to be copied
+  * Return: ptr to destination string
+  */
 char *_strcpy(char *dest, char *src)
 {
-	char *a = dest;
-	char *s = src;
+	int i;
 
-	for (; *(s - 1) != '\0'; a++, s++)
-		*a = *s;
-	*a = *s;
+
+	for (i = 0; src[i] != '\0'; i++)
+	{
+		dest[i] = src[i];
+	}
+	dest[i] = '\0';
+
 	return (dest);
 }

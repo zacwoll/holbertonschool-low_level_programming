@@ -222,14 +222,14 @@ if (a > b && b > c)
 ```
 They have an error in logic, consider a = 972, b = -98, and c = 0, which is the case given. a is clearly larger than b, and b is clearly not larger than c, so the code moves on to the `else if` and `else` statements. This is because we don't properly compare a to both numbers! If we rewrite the code to
 ```
-if (a > b && a > c)
+if (a >= b && a >= c)
 {
     largest = a;
 }
 ```
 Then we properly assign a as the largest number, de facto. It turns out the `else if` suffers from the same lack of foresight. So let's repair that too.
 ```
-else if (b > a && b > c)
+else if (b >= a && b >= c)
 {
     largest = b;
 }

@@ -9,29 +9,27 @@
 int _atoi(char *s)
 {
 	char *ele = s;
-	int num = 0, negative = 0, is_num = 0;
+	int num = 0, negative = 1, is_num = 0;
 
 	if (ele == NULL)
 		return (0);
 
-	while (*ele)
+	while (*ele || *ele != '\0')
 	{
-		if (*ele == '+')
-			negative *= 1;
-		else if (*ele == '-')
+		if (*ele == '-')
 			negative *= -1;
 
 		if (*ele >= '0' && *ele <= '9')
 		{
 			num *= 10;
-			if (negative < 0)
-				num -= *ele - '0';
-			else
-				num += *ele - '0';
+			num += *ele - '0';
 			is_num = 1;
 		}
 		else if (is_num)
+		{
+			num *= negative;
 			break;
+		}
 		ele++;
 	}
 	return (num);

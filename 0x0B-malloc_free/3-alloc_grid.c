@@ -1,5 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
+#include "holberton.h"
 
 /**
   * alloc_grid - allocates memory for a grid init to 0
@@ -9,42 +8,42 @@
   */
 int **alloc_grid(int width, int height)
 {
-	int i, j;
-	int **arr;
-	/* if width and height are bad values return NULL */
+	int **grid = NULL;
+	int *row = NULL;
+	int x, y;
+
+	/* width or height is 0 or negative, return NULL */
 	if (width <= 0 || height <= 0)
-	{
-		return (NULL);
-	}
-	/* init arr by pointers */
-	arr = malloc(height * sizeof(int *));
-	if (arr == NULL)
 		return (NULL);
 
-	for (i = 0; i < height; i++)
+	/* malloc'd space for height amount of int *'s */
+	grid = malloc(height * sizeof(int *));
+	if (grid == NULL)
+		return (NULL);
+
+	/* begin filling grid with rows */
+	for (y = 0; y < height; y++)
 	{
-		arr[i] = malloc(width * sizeof(int));
-		if (arr[i] == NULL)
+		/* instantiate a row */
+		row = malloc(width * sizeof(int));
+		if (row == NULL)
 		{
-			for (i--; i >= 0; i--)
+			for (y--; y >= 0; y--)
 			{
-				free(arr[i]);
+				free(grid[y]);
 			}
-			free(arr);
+			free(grid);
 			return (NULL);
 		}
 
-		for (j = 0; j < width; j++)
+		/* fill the row with zeroes */
+		for (x = 0; x < width; x++)
 		{
-			arr[i][j] = 0;
+			row[x] = 0;
 		}
+
+		grid[y] = row;
 	}
-	/* return array */
-	if (arr == NULL)
-	{
-		free(arr);
-		return (NULL);
-	}
-	else
-		return (arr);
+
+	return (grid);
 }

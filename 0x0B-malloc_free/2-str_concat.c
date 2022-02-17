@@ -1,4 +1,4 @@
-#include <stdlib.h>
+#include "holberton.h"
 
 /**
   * str_concat - concatenates two strings into new memory
@@ -8,30 +8,28 @@
   */
 char *str_concat(char *s1, char *s2)
 {
-	int i, j, k;
-	char *p;
+	char *concat = NULL;
+	int s1_length, s2_length, i, j;
 
 	if (s1 == NULL)
 		s1 = "";
 	if (s2 == NULL)
 		s2 = "";
-	for (i = 0; s1[i]; i++)
-	{}
-	for (j = 0; s2[j]; j++)
-	{}
-	p = malloc((i + j + 1) * sizeof(char));
-	if (p == NULL)
-	{
+
+	for (s1_length = 0; s1[s1_length] != '\0'; s1_length++);
+	for (s2_length = 0; s2[s2_length] != '\0'; s2_length++);
+
+	concat = malloc((s1_length + s2_length + 1) * sizeof(char));
+	if (concat == NULL)
 		return (NULL);
-	}
-	for (k = 0; k < i; k++)
+
+	for (i = 0, j = 0; i < s1_length || j <= s2_length; i++, j++)
 	{
-		p[k] = s1[k];
+		if (i < s1_length)
+			concat[i] = s1[i];
+		if (j <= s2_length)
+			concat[s1_length + i] = s2[j];
 	}
-	for (k = 0; k < j; k++)
-	{
-		p[k + i] = s2[k];
-	}
-	p[i + j] = '\0';
-	return (p);
+
+	return (concat);
 }

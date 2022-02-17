@@ -1,4 +1,4 @@
-#include <stdlib.h>
+#include "holberton.h"
 
 /**
   * create_array - creates an array init with c
@@ -8,16 +8,16 @@
   */
 char *create_array(unsigned int size, char c)
 {
-	char *ar = malloc(size * sizeof(char));
+	char *array = malloc(size * sizeof(char));
 	unsigned int i = 0;
 
-	if (ar == NULL || size == 0)
+	if (array == NULL || size == 0)
 	{
 		return (NULL);
 	}
 	for (; i < size; i++)
 	{
-		ar[i] = c;
+		array[i] = c;
 	}
-	return (ar);
+	return (array);
 }
